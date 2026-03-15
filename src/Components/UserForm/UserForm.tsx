@@ -83,7 +83,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
         </div>
         {!readOnly &&
             <div className="text-center">
-            <button className='btn btn-warning text-white w-25 my-3'>Save</button>
+            <button className='btn btn-warning text-white w-50 my-3'>Save</button>
             </div>
         }
         </div>
