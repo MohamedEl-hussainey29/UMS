@@ -27,7 +27,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
           <div className="col-md-6">
             <label>First Name</label>
               <input className="form-control"  type="text" placeholder='Enter First Name' disabled={readOnly}
-                {...register('firstName',{required:'First Name is required!!!'})}
+                {...register('firstName',{required:'First Name is required!!!' , setValueAs: (value) => value.trim()})}
               />
 
               {errors.firstName && <span className='text-danger d-block'>{errors.firstName.message}</span>}
@@ -35,7 +35,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
           <div className="col-md-6">
             <label>Last Name</label>
               <input className="form-control"  type="text" placeholder='Enter Last Name' disabled={readOnly}
-                {...register('lastName',{required:'Last Name is required!!!'})}
+                {...register('lastName',{required:'Last Name is required!!!',setValueAs: (value) => value.trim()})}
               />
 
               {errors.lastName && <span className='text-danger d-block'>{errors.lastName.message}</span>}
@@ -48,7 +48,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
                 {...register('email',{required:'Email is required!!!' , pattern:{
                   value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
                   message: 'Email should be valid!'
-                }})}
+                } ,setValueAs: (value) => value.trim()})}
               />
 
               {errors.email && <span className='text-danger d-block'>{errors.email.message}</span>}
@@ -57,7 +57,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
             <label>Age</label>
               <input className="form-control"  type="number" placeholder='Enter Age' disabled={readOnly}
                 {...register('age',{required:'Age is required!!!',max:{value: 60 , message: 'sorry, max age is 60'} , 
-                min:{value: 1 , message: 'age cannot be zero or -ve !'}})}
+                min:{value: 1 , message: 'age cannot be zero or -ve !'},setValueAs: (value) => value.trim()})}
               />
 
               {errors.age && <span className='text-danger d-block'>{errors.age.message}</span>}
@@ -67,7 +67,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
           <div className="col-md-6">
             <label>Phone Number</label>
               <input className="form-control"  type="text" placeholder='Enter Phone Number' disabled={readOnly}
-                {...register('phone',{required:'Phone Number is required!!!'})}
+                {...register('phone',{required:'Phone Number is required!!!' ,setValueAs: (value) => value.trim()})}
               />
 
               {errors.phone && <span className='text-danger d-block'>{errors.phone.message}</span>}
@@ -75,7 +75,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
           <div className="col-md-6">
             <label>Birth Date</label>
               <input className="form-control"  type="text" placeholder='Enter Birth Date' disabled={readOnly}
-                {...register('birthDate',{required:'Birth Date is required!!!'})}
+                {...register('birthDate',{required:'Birth Date is required!!!',setValueAs: (value) => value.trim()})}
               />
 
               {errors.birthDate && <span className='text-danger d-block'>{errors.birthDate.message}</span>}
