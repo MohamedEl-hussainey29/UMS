@@ -17,7 +17,18 @@ interface UserFormProps {
 
 export default function UserForm({ onSubmit, defaultValues, readOnly }: UserFormProps) {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<UserFormData>({defaultValues});
+  // to not accept white spaces while updating userData
+  const cleanedDefaults = defaultValues? {
+      ...defaultValues,
+      firstName: defaultValues.firstName?.trim(),
+      lastName: defaultValues.lastName?.trim(),
+      email: defaultValues.email?.trim(),
+      phone: defaultValues.phone?.trim(),
+      birthDate: defaultValues.birthDate?.trim(),
+    }: undefined;
+
+const { register, handleSubmit, formState: { errors } } =
+  useForm<UserFormData>({ defaultValues: cleanedDefaults });
 
   return (
     <>
@@ -57,7 +68,7 @@ export default function UserForm({ onSubmit, defaultValues, readOnly }: UserForm
             <label>Age</label>
               <input className="form-control"  type="number" placeholder='Enter Age' disabled={readOnly}
                 {...register('age',{required:'Age is required!!!',max:{value: 60 , message: 'sorry, max age is 60'} , 
-                min:{value: 1 , message: 'age cannot be zero or -ve !'},setValueAs: (value) => value.trim()})}
+                min:{value: 1 , message: 'age cannot be zero or -ve !'}})}
               />
 
               {errors.age && <span className='text-danger d-block'>{errors.age.message}</span>}
